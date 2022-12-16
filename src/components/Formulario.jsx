@@ -32,24 +32,32 @@ const Formulario = ({crearTurno}) => {
     const submitTurno = e => {
         e.preventDefault();
 
-        // Validar datos
+        // Validando datos
         if (mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === 
         ''  ) {
             actualizarError(true);
             return; //si hay un problema no sigue ejecutando el codigo
         }
 
-        // Eliminar el mensaje previo
+        // Eliminar el mensaje de error
         actualizarError(false);
 
         // generando y asignando id
         turno.id = shortid.generate(); //asigna automaticamente un id con la libreria shortid, no use uuid
         
        
-        // Creando la turno
+        // Creando el turno
         crearTurno(turno);
         
-        // Reiniciar el form
+        // Reiniciar los campos del form
+        actualizarturno({
+            id: '',
+            mascota: '',
+            propietario: '',
+            fecha: '',
+            hora: '',
+            sintomas: ''
+        })
     }
 
 
