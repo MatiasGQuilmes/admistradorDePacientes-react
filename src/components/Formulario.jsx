@@ -3,10 +3,10 @@ import shortid from 'shortid';
 
 
 
-const Formulario = () => {
+const Formulario = ({crearTurno}) => {
 
-    // Crear State de Citas
-    const [cita, actualizarCita] = useState({
+    // Crear State de turnos
+    const [turno, actualizarturno] = useState({
         id: '',
         mascota: '',
         propietario: '',
@@ -19,14 +19,14 @@ const Formulario = () => {
 
     //Funcion que se ejecuta cuando el usuario escribe en un input
     const actualizarState = e => {
-        actualizarCita({
-            ...cita,
+        actualizarturno({
+            ...turno,
             [e.target.name]: e.target.value
         })
     }
 
     // Extraer los valores
-    const { mascota, propietario, fecha, hora, sintomas } = cita;
+    const { mascota, propietario, fecha, hora, sintomas } = turno;
 
     // Agregar turno
     const submitTurno = e => {
@@ -43,11 +43,11 @@ const Formulario = () => {
         actualizarError(false);
 
         // generando y asignando id
-        cita.id = shortid.generate(); //asigna automaticamente un id con la libreria shortid, no use uuid
-        console.log(cita);
+        turno.id = shortid.generate(); //asigna automaticamente un id con la libreria shortid, no use uuid
+        
        
-        // Creando la cita
-
+        // Creando la turno
+        crearTurno(turno);
         
         // Reiniciar el form
     }
@@ -55,7 +55,7 @@ const Formulario = () => {
 
     return ( 
         <Fragment>
-            <h2>Crear Cita</h2>
+            <h2>Crear turno</h2>
             
             {error ?   <p className='alerta-error'>Todos los campos son obligatorios!</p>  : null}
 
@@ -111,7 +111,7 @@ const Formulario = () => {
                 <button 
                     type="submit"
                     className='u-full-width button-primary'
-                >Agregar Cita</button>
+                >Agregar turno</button>
             </form>
 
         </Fragment>
