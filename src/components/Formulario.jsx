@@ -1,5 +1,6 @@
 import React, { Fragment , useState } from 'react';
 import shortid from 'shortid';
+import PropTypes from 'prop-types'
 
 
 
@@ -126,4 +127,8 @@ const Formulario = ({crearTurno}) => {
      );
 }
  
+Formulario.propTypes = {
+    crearTurno: PropTypes.func.isRequired
+}
+
 export default Formulario;
